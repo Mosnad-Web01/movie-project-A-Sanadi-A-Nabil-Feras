@@ -5,6 +5,7 @@ import { fetchMovieDetails } from "@/services/fetchMovieDetails"
 import LoadingSpinner from "@/components/LoadingSpinner"
 import Link from "next/link"
 
+
 const SingleMovie = ({ movie }) => {
   const [showFullOverview, setShowFullOverview] = useState(false)
   const [activeTab, setActiveTab] = useState("overview")
