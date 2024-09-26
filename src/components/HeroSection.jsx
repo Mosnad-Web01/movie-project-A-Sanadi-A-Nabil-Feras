@@ -1,5 +1,5 @@
 import React from 'react';
-import { coverBG } from '@/util/constants'; 
+import { coverBG } from '@/util/local-ImageConstants'; 
 
 
 

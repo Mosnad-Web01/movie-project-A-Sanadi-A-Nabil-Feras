@@ -16,7 +16,7 @@
   import SearchBar from "./SearchBar";
 
 // local relative imports   
-  import { logo } from '@/util/constants'; 
+  import { logo } from '@/util/local-ImageConstants'; 
   import { fetchGenres } from "@/services/fetchGenres";
   import { useDarkMode } from "@/hooks/useDarkMode";
 

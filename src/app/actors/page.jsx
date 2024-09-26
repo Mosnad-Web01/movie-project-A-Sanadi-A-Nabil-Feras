@@ -10,7 +10,7 @@
   import LoadingSpinner from "@/components/LoadingSpinner"
 
 // Import default images URLs from constants
-import { defaultMaleImg ,defaultFemaleImg , defaultUnknownImg } from '@/util/constants'; 
+import { defaultMaleImg ,defaultFemaleImg , defaultUnknownImg } from '@/util/local-ImageConstants'; 
 
 
 // ActorImage Component as before

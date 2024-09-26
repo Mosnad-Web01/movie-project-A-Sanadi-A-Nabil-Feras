@@ -1,5 +1,5 @@
 import React from 'react';
-import { sliderBgImg } from '../util/constants'; 
+import { sliderBgImg } from '../util/local-ImageConstants'; 
 
 
 const HorizontalSlider = ({ children }) => {

@@ -1,9 +1,12 @@
 "use client";
-import React, { useState } from 'react';
-import ToggleSwitch from './ToggleSwitch';
-import MediaCard from './MediaCard';
-import MediaCardPlaceholder from './MediaCardPlaceholder';
-import HorizontalSlider from './HorizontalSlider';
+
+  import React, { useState } from 'react';
+
+//components
+  import ToggleSwitch from './ToggleSwitch';
+  import MediaCard from './MediaCard';
+  import MediaCardPlaceholder from './MediaCardPlaceholder';
+  import HorizontalSlider from './HorizontalSlider';
 
 const MediaSection = ({ 
   title, 
