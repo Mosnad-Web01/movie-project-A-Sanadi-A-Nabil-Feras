@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchDataFromTMDB } from '../util/fetchDataFromTMDB';
+import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
 
 export const usePopularMedia = (category) => {
   const [media, setMedia] = useState([]);

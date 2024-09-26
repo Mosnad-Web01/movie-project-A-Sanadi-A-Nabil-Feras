@@ -1,9 +1,9 @@
 "use client";
 
 import MediaSection from "./MediaSection";
-import { useTrendingMovies } from "../hooks/useTrendingMovies";
-import { usePopularMedia } from "../hooks/usePopularMedia";
-import { useFreeToWatchMedia } from "../hooks/useFreeToWatchMedia";
+import { useTrendingMovies } from "@/hooks/useTrendingMovies";
+import { usePopularMedia } from "@/hooks/usePopularMedia";
+import { useFreeToWatchMedia } from "@/hooks/useFreeToWatchMedia";
 
 const HomeSection = () => {
   // Trending Section Logic

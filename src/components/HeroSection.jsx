@@ -1,5 +1,6 @@
 import React from 'react';
-import coverBG from '../images/coverBG.jpg';
+import { coverBG } from '@/util/constants'; 
+
 
 
 const HeroSection = () => {

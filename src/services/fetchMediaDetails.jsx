@@ -1,5 +1,5 @@
 // services/fetchMediaDetails.js
-import { fetchDataFromTMDB } from '../util/fetchDataFromTMDB';
+import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
 
 export async function fetchMediaDetails(mediaId, mediaType) {
   try {

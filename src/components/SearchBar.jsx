@@ -1,9 +1,15 @@
+// React & Next imports
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { TrendingUpIcon, SearchIcon, XIcon } from '@heroicons/react/solid';
-import { fetchDataFromTMDB } from '../util/fetchDataFromTMDB';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+
+// Third-party library imports
 import debounce from 'lodash/debounce';
+import { TrendingUpIcon, SearchIcon, XIcon } from '@heroicons/react/solid';
+
+// util imports
+import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
+
 
 const SearchBar = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');

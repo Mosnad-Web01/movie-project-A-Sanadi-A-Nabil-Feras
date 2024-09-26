@@ -1,5 +1,6 @@
 import React from 'react';
-import bgImg from '../images/trending-bg.svg';
+import { sliderBgImg } from '../util/constants'; 
+
 
 const HorizontalSlider = ({ children }) => {
   return (
@@ -9,7 +10,7 @@ const HorizontalSlider = ({ children }) => {
       style={{
         width: '100%',
         whiteSpace: 'nowrap',
-        backgroundImage: `url(${bgImg.src})`,
+        backgroundImage: `url(${sliderBgImg.src})`,
         backgroundPosition: 'center bottom',
       
       }}

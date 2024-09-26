@@ -1,17 +1,24 @@
 "use client"
-// components/Navbar.js
-import { useState, useEffect } from "react";
-import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
-import { FaMoon, FaSun } from "react-icons/fa";
-import { useDarkMode } from "../hooks/useDarkMode";
-import Sidebar from "./Sidebar";
-import LinkDropdown from "../components/LinkDropdown";
-import ProfileDropdown from "../components/ProfileDropdown";
-import SearchBar from "../components/SearchBar";
-import Image from "next/image";
-import logo from "../images/logo.svg";
-import { fetchGenres } from "../services/fetchGenres";
-import Link from "next/link";
+
+// react & next imports 
+  import { useState, useEffect } from "react";
+  import Image from "next/image";
+  import Link from "next/link";
+
+// third-party imports
+  import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
+  import { FaMoon, FaSun } from "react-icons/fa";
+
+// component imports 
+  import Sidebar from "./Sidebar";
+  import LinkDropdown from "./LinkDropdown";
+  import ProfileDropdown from "./ProfileDropdown";
+  import SearchBar from "./SearchBar";
+
+// local relative imports   
+  import { logo } from '@/util/constants'; 
+  import { fetchGenres } from "@/services/fetchGenres";
+  import { useDarkMode } from "@/hooks/useDarkMode";
 
 // Centralized navLinks data
 const NAV_LINKS_TEMPLATE = [

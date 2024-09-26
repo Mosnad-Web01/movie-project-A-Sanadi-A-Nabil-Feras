@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { fetchDataFromTMDB } from '../util/fetchDataFromTMDB';
+
+import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
 
 export const useTrendingMovies = (trendingType) => {
   const [movies, setMovies] = useState([]);

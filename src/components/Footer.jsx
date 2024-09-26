@@ -1,5 +1,5 @@
 import Image from "next/image"
-import footerImg from "./../images/footer.svg"
+import { footerImg } from '../util/constants'; 
 const Footer = () => {
   return (
     <footer className="bg-[#032541] py-16 text-white dark:bg-[#02345c]">

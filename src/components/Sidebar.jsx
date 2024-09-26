@@ -1,5 +1,7 @@
-import { XIcon } from "@heroicons/react/solid";
 import { useState } from "react";
+
+import { XIcon } from "@heroicons/react/solid";
+
 
 const SidebarItem = ({ label, dropdownItems }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

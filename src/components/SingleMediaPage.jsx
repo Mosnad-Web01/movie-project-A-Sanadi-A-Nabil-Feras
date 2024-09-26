@@ -1,19 +1,27 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import Image from "next/image"
-import LoadingSpinner from "@/components/LoadingSpinner"
-import { fetchMediaDetails } from "@/services/fetchMediaDetails"
-import Banner from "@/components/Banner"
-import TabMenu from "@/components/TabMenu"
-import Link from "next/link"
-import StarRating from "./StarRating"
-import ReviewSection from "./ReviewSection"
-import DetailsSection from "./DetailsSection"
-import InteractiveButtons from "./InteractiveButtons"
-import FlipCard from "./FlipCard"
+// React-related imports
+import React, { useState, useEffect } from "react";
+
+// Next.js imports
+import Link from "next/link";
+import Image from "next/image";
+
+// component 
+import LoadingSpinner from "./LoadingSpinner";
+import Banner from "./Banner";
+import TabMenu from "./TabMenu";
+import StarRating from "./StarRating";
+import ReviewSection from "./ReviewSection";
+import DetailsSection from "./DetailsSection";
+import InteractiveButtons from "./InteractiveButtons";
+import FlipCard from "./FlipCard";
+
+// service imports
+import { fetchMediaDetails } from "@/services/fetchMediaDetails";
 
 const SingleMediaPage = ({ media, mediaType }) => {
+  
   const [showFullOverview, setShowFullOverview] = useState(false)
   const [activeTab, setActiveTab] = useState("overview")
   const [additionalData, setAdditionalData] = useState(null)
