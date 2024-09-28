@@ -1,4 +1,4 @@
-//util/imageConstants.js
+//util/localimageConstants.js
 // import images from the public folder
   import coverBG from '../../public/coverBG.jpg';
   import defaultFemaleImg from '../../public/default-female.jpg';
