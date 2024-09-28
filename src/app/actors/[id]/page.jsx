@@ -6,6 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 import LoadingSpinner from "@/components/LoadingSpinner"
 
+import { getImageUrl } from "@/util/tmdbImageConstants"
+
 const ActorPage = ({ params }) => {
   const { id } = params
   const [actor, setActor] = useState(null)
@@ -52,7 +54,8 @@ const ActorPage = ({ params }) => {
       {/* Actor Image */}
       <div className="flex-shrink-0">
         <Image
-          src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+  
+          src={`${getImageUrl('PROFILE', 'W500', actor.profile_path)}`}
           alt={actor.name}
           width={300}
           height={450}

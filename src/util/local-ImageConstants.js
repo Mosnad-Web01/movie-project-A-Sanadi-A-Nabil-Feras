@@ -7,6 +7,8 @@
   import footerImg from '../../public/footer.svg';
   import logo from '../../public/logo.svg';
   import sliderBgImg from '../../public/sliderBgImg.svg';
+  import placeholderImg from '../../public/placeholder-img.jpg';
+  import banner_placeholder from '../../public/banner_placeholder.jpg';
 
 // export them so they can be used in components
   export {
@@ -16,5 +18,7 @@
     defaultUnknownImg,
     footerImg,
     logo,
-    sliderBgImg
+    sliderBgImg,
+    placeholderImg,
+    banner_placeholder
   };

@@ -1,6 +1,7 @@
 import React from "react";
 import FlipCard from "./FlipCard";
-const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
+import { IMAGE_TYPES } from '@/util/tmdbImageConstants'
+
 
 
 // Helper function to capitalize the first letter of a string
@@ -35,7 +36,7 @@ const CategoryPage = ({ pageTitle, shows, categoryId }) => {
               key={show.id}
               item={show}
               mediaType={pageTitle}
-              imgBaseUrl={imgBaseUrl}
+              size={IMAGE_TYPES.POSTER.XLARGE} //w500
               backStyle="alternate"
             />
           ))

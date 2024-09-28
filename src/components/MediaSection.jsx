@@ -8,6 +8,10 @@
   import MediaCardPlaceholder from './MediaCardPlaceholder';
   import HorizontalSlider from './HorizontalSlider';
 
+// util imports
+import { getImageUrl } from '@/util/tmdbImageConstants';
+
+
 const MediaSection = ({ 
   title, 
   toggleOptions, 
@@ -46,7 +50,8 @@ const MediaSection = ({
               return (
                 <MediaCard
                   key={item.id}
-                  imageUrl={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+           
+                  imageUrl={getImageUrl("POSTER","w500", item.poster_path)}
                   title={item.title || item.name}
                   voteAverage={item.vote_average}
                   releaseDate={item.release_date || item.first_air_date}

@@ -12,6 +12,8 @@
 // Import default images URLs from constants
 import { defaultMaleImg ,defaultFemaleImg , defaultUnknownImg } from '@/util/local-ImageConstants'; 
 
+// util imports
+import {getImageUrl} from '@/util/tmdbImageConstants'
 
 // ActorImage Component as before
 const ActorImage = ({ profilePath, gender, name }) => {
@@ -19,7 +21,7 @@ const ActorImage = ({ profilePath, gender, name }) => {
 
   const handleLoadingComplete = () => {
     if (profilePath) {
-      setImageSrc(`https://image.tmdb.org/t/p/w200${profilePath}`)
+      setImageSrc(getImageUrl("PROFILE","LARGE", profilePath))
     }
   }
 

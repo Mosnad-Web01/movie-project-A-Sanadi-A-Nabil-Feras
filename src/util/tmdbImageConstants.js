@@ -14,13 +14,16 @@ const IMAGE_TYPES = {
   POSTER: {
     SMALL: "w92",
     MEDIUM: "w185",
-    LARGE: "w500",
+    LARGE: "w300",
+    XLARGE: "w500",
     ORIGINAL: "original",
   },
   PROFILE: {
     SMALL: "w45",
     MEDIUM: "w185",
-    LARGE: "h632",
+    LARGE: "w200",
+    XLARGE: "w500",
+    XXLARGE: "h632",
     ORIGINAL: "original",
   },
   BACKDROP: {
@@ -53,7 +56,7 @@ const IMAGE_TYPES = {
  */
 const getImageUrl = (type = 'POSTER', size = 'MEDIUM', path = "") => {
   const imageSize = IMAGE_TYPES[type]?.[size] || IMAGE_TYPES.POSTER.MEDIUM;
-  return path ? `${BASE_IMAGE_URL}${imageSize}${path}` : "/placeholder-avatar.png";
+  return path ? `${BASE_IMAGE_URL}${imageSize}${path}` : '/placeholder-avater.png';
 };
 
 // Export TMDB constants and utility function

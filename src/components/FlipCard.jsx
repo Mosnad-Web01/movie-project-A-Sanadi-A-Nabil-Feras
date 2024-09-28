@@ -1,9 +1,21 @@
-import React from 'react';
+"use client";
+// React and Next.js imports
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+// Component imports
 import StarRating from './StarRating';
 
-const FlipCard = ({ item, mediaType, imgBaseUrl, backStyle = 'default' }) => {
+// Util imports
+import { getImageUrl } from '@/util/tmdbImageConstants';
+import { placeholderImg} from '@/util/local-ImageConstants';
+
+const FlipCard = ({ item, mediaType, size, backStyle = 'default' }) => {
+  
+  // state to manage the image source for handling error by setting placeholderImg 
+  const [imgSrc, setImgSrc] = useState(getImageUrl('POSTER', size, item.poster_path));
+
   return (
     <Link href={`/${mediaType}/${item.id}`} passHref>
       <div className="flex-shrink-0 w-56 text-center group perspective cursor-pointer">
@@ -11,11 +23,12 @@ const FlipCard = ({ item, mediaType, imgBaseUrl, backStyle = 'default' }) => {
           {/* Front side */}
           <div className="absolute inset-0 rounded-lg overflow-hidden">
             <Image
-              src={`${imgBaseUrl}${item.poster_path}`}
+              src={imgSrc}
               alt={item.title || item.name}
               layout="fill"
               objectFit="cover"
               className="transition duration-300 group-hover:scale-110"
+              onError={() => setImgSrc(placeholderImg)} // Handle error by setting fallback image
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
           </div>
