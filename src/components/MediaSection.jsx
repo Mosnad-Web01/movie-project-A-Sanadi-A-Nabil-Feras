@@ -10,6 +10,16 @@ import { getImageUrl } from '@/util/tmdbImageConstants';
 import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
 import { getMediaLink, getMediaTitle, getMediaReleaseDate } from '../services/mediaServices';
 
+/**
+ * A reusable component for displaying a section of media (e.g., movies, TV shows) with a toggle switch for selecting the category.
+ *
+ * @param {string} title The title to display for the section.
+ * @param {Array} toggleOptions An array of strings representing the options for the toggle switch.
+ * @param {function} endpoint A function that takes a category and returns the API endpoint for fetching media.
+ * @param {string} initialCategory The initial category to select.
+ *
+ * @returns {React.ReactElement} A React component for rendering the media section.
+ */
 const MediaSection = ({ title, toggleOptions, endpoint, initialCategory }) => {
   // State for the selected category (e.g., "day" or "week" for trending)
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
