@@ -1,14 +1,23 @@
-// MediaSection.jsx
-"use client";
+"use client"
 
-import React, { useState, useEffect, useCallback } from 'react';
-import ToggleSwitch from './ToggleSwitch';
-import MediaCard from './MediaCard';
-import MediaCardPlaceholder from './MediaCardPlaceholder';
-import HorizontalSlider from './HorizontalSlider';
-import { getImageUrl } from '@/util/tmdbImageConstants';
-import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
-import { getMediaLink, getMediaTitle, getMediaReleaseDate } from '../services/mediaServices';
+// react and next.js imports
+import React, { useState, useEffect, useCallback } from "react"
+
+// component imports
+import ToggleSwitch from "./ToggleSwitch"
+import MediaCard from "./MediaCard"
+import MediaCardPlaceholder from "./MediaCardPlaceholder"
+import HorizontalSlider from "./HorizontalSlider"
+
+// util & service imports
+import { getImageUrl } from "@/util/tmdbImageConstants"
+import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB"
+import {
+  getMediaLink,
+  getMediaTitle,
+  getMediaReleaseDate,
+} from "../services/mediaServices"
+
 
 /**
  * A reusable component for displaying a section of media (e.g., movies, TV shows) with a toggle switch for selecting the category.
@@ -20,38 +29,41 @@ import { getMediaLink, getMediaTitle, getMediaReleaseDate } from '../services/me
  *
  * @returns {React.ReactElement} A React component for rendering the media section.
  */
-const MediaSection = ({ title, toggleOptions, endpoint, initialCategory }) => {
-  // State for the selected category (e.g., "day" or "week" for trending)
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
-  // State for media data, loading status, and error handling
+const MediaSection = ({ title, toggleOptions, endpoint, initialCategory }) => {
+  //state for the selected category (e.g., "day" or "week" for trending|| or "streaming" , "on_tv", for Popular)
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory)
+
   const [state, setState] = useState({
     media: [],
     loading: true,
-    error: null
-  });
+    error: null,
+  })
 
-  // Effect to fetch media data when the category changes
+  // fetch media data when the category changes
   useEffect(() => {
     const fetchMedia = async () => {
-      setState(prev => ({ ...prev, loading: true, error: null }));
+      setState((prev) => ({ ...prev, loading: true, error: null }))
       try {
-        const data = await fetchDataFromTMDB(endpoint(selectedCategory));
-        setState(prev => ({ ...prev, media: data.results, loading: false }));
+        const data = await fetchDataFromTMDB(endpoint(selectedCategory))
+        setState((prev) => ({ ...prev, media: data.results, loading: false }))
       } catch (error) {
-        setState(prev => ({ ...prev, error: 'Failed to load media', loading: false }));
+        setState((prev) => ({
+          ...prev,
+          error: "Failed to load media",
+          loading: false,
+        }))
       }
-    };
-    fetchMedia();
-  }, [endpoint, selectedCategory]);
+    }
+    fetchMedia()
+  }, [endpoint, selectedCategory])
 
-  // Callback for handling category change
+  // a callback for handling category change
   const handleCategoryChange = useCallback((category) => {
-    setSelectedCategory(category);
-  }, []);
+    setSelectedCategory(category)
+  }, [])
 
-  // Destructure state for easier use in JSX
-  const { media, loading, error } = state;
+  const { media, loading, error } = state
 
   return (
     <div className="container mx-auto font-custom px-4">
@@ -66,16 +78,14 @@ const MediaSection = ({ title, toggleOptions, endpoint, initialCategory }) => {
           />
         </div>
 
-        {/* Media Content */}
+        {/* media content  */}
         {loading ? (
-          // Show placeholders while loading
           <HorizontalSlider>
             {[...Array(8)].map((_, index) => (
-              <MediaCardPlaceholder key={index} />
+              <MediaCardPlaceholder key={index} /> //skeleton media card
             ))}
           </HorizontalSlider>
         ) : media && media.length > 0 ? (
-          // Show media cards if data is available
           <HorizontalSlider>
             {media.map((item) => (
               <MediaCard
@@ -89,15 +99,15 @@ const MediaSection = ({ title, toggleOptions, endpoint, initialCategory }) => {
             ))}
           </HorizontalSlider>
         ) : (
-          // Show message if no media is available
+          //if no media is available
           <p>No media available.</p>
         )}
 
-        {/* Error message */}
+        {/* error message */}
         {error && <p className="text-red-500">Failed to load media: {error}</p>}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MediaSection;
+export default MediaSection
