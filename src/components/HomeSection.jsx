@@ -1,59 +1,41 @@
+// HomeSection.jsx
 "use client";
 
-import MediaSection from "./MediaSection";
-import { useTrendingMovies } from "../hooks/useTrendingMovies";
-import { usePopularMedia } from "../hooks/usePopularMedia";
-import { useFreeToWatchMedia } from "../hooks/useFreeToWatchMedia";
+import React from 'react';
+import MediaSection from './MediaSection';
+import { getTrendingEndpoint, getPopularEndpoint, getFreeToWatchEndpoint } from '../services/mediaServices';
 
 const HomeSection = () => {
-  // Trending Section Logic
-  const trendingOptions = [
-    { value: "day", label: "Today" },
-    { value: "week", label: "This Week" },
-  ];
-  const useTrendingMediaWrapper = (trendingType) => {
-    const { movies, loading, error } = useTrendingMovies(trendingType);
-    return { media: movies, loading, error };
-  };
-
-  // What's Popular Section Logic
-  const popularCategories = [
-    { label: "Streaming", value: "streaming" },
-    { label: "On TV", value: "on_tv" },
-    { label: "For Rent", value: "for_rent" },
-    { label: "In Theaters", value: "in_theaters" },
-  ];
-
-  // Free To Watch Section Logic
-  const freeToWatchCategories = [
-    { label: "Movies", value: "movies" },
-    { label: "TV", value: "tv" },
-  ];
-
   return (
-    <div className=" flex flex-col gap-12 min-h-screen"> 
-      {/* Trending Section */}
+    <div className="flex flex-col gap-12 min-h-screen">
       <MediaSection
         title="Trending"
-        toggleOptions={trendingOptions}
-        useMediaHook={useTrendingMediaWrapper}
+        toggleOptions={[
+          { value: "day", label: "Today" },
+          { value: "week", label: "This Week" },
+        ]}
+        endpoint={getTrendingEndpoint}
         initialCategory="day"
       />
-
-      {/* What's Popular Section */}
       <MediaSection
         title="What's Popular"
-        toggleOptions={popularCategories}
-        useMediaHook={usePopularMedia}
+        toggleOptions={[
+          { label: "Streaming", value: "streaming" },
+          { label: "On TV", value: "on_tv" },
+          { label: "For Rent", value: "for_rent" },
+          { label: "In Theaters", value: "in_theaters" },
+        ]}
+        endpoint={getPopularEndpoint}
         initialCategory="streaming"
       />
-
-      {/* Free To Watch Section */}
       <MediaSection
         title="Free To Watch"
-        toggleOptions={freeToWatchCategories}
-        useMediaHook={useFreeToWatchMedia}
-        initialCategory="movies"
+        toggleOptions={[
+          { label: "Movies", value: "movie" },
+          { label: "TV", value: "tv" },
+        ]}
+        endpoint={getFreeToWatchEndpoint}
+        initialCategory="movie"
       />
     </div>
   );

@@ -1,9 +1,17 @@
+// React & Next imports
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { TrendingUpIcon, SearchIcon, XIcon } from '@heroicons/react/solid';
-import { fetchDataFromTMDB } from '../util/fetchDataFromTMDB';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+
+// Third-party library imports
 import debounce from 'lodash/debounce';
+import { TrendingUpIcon, SearchIcon, XIcon } from '@heroicons/react/solid';
+
+// util imports
+import { fetchDataFromTMDB } from '@/util/fetchDataFromTMDB';
+import { getImageUrl } from '@/util/tmdbImageConstants';
+
+
 
 const SearchBar = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
@@ -99,11 +107,11 @@ const SearchBar = ({ isOpen, onClose }) => {
               <ul className="space-y-2 max-h-64 overflow-y-auto custom-scrollbar">
                 {suggestedResults.map((item) => (
                   <li key={item.id} className="flex items-center text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-150 ease-in-out p-2">
-                    <Link href={`/${item.media_type}/${item.id}`} onClick={() => handleItemClick(item)} className="flex items-center w-full">
+                    <Link href={`/${item.media_type ==='person' ? 'actors' : item.media_type}/${item.id}`} onClick={() => handleItemClick(item)} className="flex items-center w-full">
                       <div className="flex items-center">
                         {item.poster_path || item.profile_path ? (
                           <Image
-                            src={`https://image.tmdb.org/t/p/w92${item.poster_path || item.profile_path}`}
+                            src={getImageUrl("POSTER","SMALL", item.poster_path || item.profile_path)}
                             alt={item.title || item.name}
                             width={45}
                             height={68}

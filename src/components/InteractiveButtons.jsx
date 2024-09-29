@@ -1,38 +1,45 @@
-import { FaHeart, FaBookmark, FaStar, FaBars } from "react-icons/fa";
+import React, { useState } from "react";
 
-const InteractiveButtons = ({ liked, setLiked, bookmarked, setBookmarked, rated, setRated, menuOpen, setMenuOpen }) => {
+import { FaHeart, FaBookmark, FaStar, FaBars } from "react-icons/fa";
+import IconButton from "./IconButton";
+
+const InteractiveButtons = ({ mediaId, mediaType }) => {
+  const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
+  const [rated, setRated] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const inActiveClassStyle = "bg-gray-100 text-gray-600 hover:bg-gray-200";
+
   return (
     <div className="flex justify-left space-x-2 my-4">
-      <button
+      <IconButton
         onClick={() => setLiked(!liked)}
-        className={`p-2 rounded-full transition-all duration-300 shadow-md ${
-          liked ? "bg-red-400 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-        }`}
-      >
-        <FaHeart className="w-5 h-5" />
-      </button>
-      <button
+        isActive={liked}
+        activeClass="bg-red-400 text-white"
+        inactiveClass= {inActiveClassStyle}
+        Icon={FaHeart}
+      />
+      <IconButton
         onClick={() => setBookmarked(!bookmarked)}
-        className={`p-2 rounded-full transition-all duration-300 shadow-md ${
-          bookmarked ? "bg-blue-400 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-        }`}
-      >
-        <FaBookmark className="w-5 h-5" />
-      </button>
-      <button
+        isActive={bookmarked}
+        activeClass="bg-blue-400 text-white"
+        inactiveClass= {inActiveClassStyle}
+        Icon={FaBookmark}
+      />
+      <IconButton
         onClick={() => setRated(!rated)}
-        className={`p-2 rounded-full transition-all duration-300 shadow-md ${
-          rated ? "bg-yellow-500 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-        }`}
-      >
-        <FaStar className="w-5 h-5" />
-      </button>
-      <button
+        isActive={rated}
+        activeClass="bg-yellow-500 text-white"
+        inactiveClass={inActiveClassStyle}
+        Icon={FaStar}
+      />
+      <IconButton
         onClick={() => setMenuOpen(!menuOpen)}
-        className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300 shadow-md"
-      >
-        <FaBars className="w-5 h-5" />
-      </button>
+        isActive={false} // always inactive for the menu button
+        activeClass="bg-gray-200" // not used, but kept for consistency
+        inactiveClass={inActiveClassStyle}
+        Icon={FaBars}
+      />
     </div>
   );
 };

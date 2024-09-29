@@ -1,9 +1,8 @@
 
-import { fetchDataFromTMDB } from "../util/fetchDataFromTMDB";
+import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB";
 
 
     export const fetchGenres = async () => {
-
     try {
         const data = await fetchDataFromTMDB('/genre/movie/list');
         // console.log("data generce from TMDB",data)

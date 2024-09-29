@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react"
-import { fetchDataFromTMDB } from "./../util/fetchDataFromTMDB"
+import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB"
 
 const FilterSidebar = ({ onFilterChange }) => {
   const [genres, setGenres] = useState([])

@@ -1,14 +1,11 @@
-import React from "react";
+// util and services Imports 
+import { capitalizeFirstLetter } from "@/services/format";
+import { IMAGE_TYPES } from '@/util/tmdbImageConstants'
+
+// Component Imports
 import FlipCard from "./FlipCard";
-const imgBaseUrl = "https://image.tmdb.org/t/p/w500";
 
 
-// Helper function to capitalize the first letter of a string
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-};
-
-// Component to display the list of movies and tv shows in a category page
 const CategoryPage = ({ pageTitle, shows, categoryId }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 text-[#032541] dark:text-white">
@@ -35,7 +32,7 @@ const CategoryPage = ({ pageTitle, shows, categoryId }) => {
               key={show.id}
               item={show}
               mediaType={pageTitle}
-              imgBaseUrl={imgBaseUrl}
+              size={IMAGE_TYPES.POSTER.XLARGE} //w500
               backStyle="alternate"
             />
           ))

@@ -1,14 +1,19 @@
 "use client"
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { fetchPopularActors } from "../../services/fetchActors"
-import LoadingSpinner from "./../../components/LoadingSpinner"
 
-// Define the URLs for default images
-import defaultMaleImage from "./../../images/default-male.jpg"
-import defaultFemaleImage from "./../../images/default-female.jpg"
-import defaultUnknownImage from "./../../images/default-unknown.jpg"
-import Link from "next/link"
+//react & nextimports
+  import { useState, useEffect } from "react"
+  import Image from "next/image"
+  import Link from "next/link"
+
+//components imports
+  import { fetchPopularActors } from "@/services/fetchActors"
+  import LoadingSpinner from "@/components/LoadingSpinner"
+
+// Import default images URLs from constants
+import { defaultMaleImg ,defaultFemaleImg , defaultUnknownImg } from '@/util/local-ImageConstants'; 
+
+// util imports
+import {getImageUrl} from '@/util/tmdbImageConstants'
 
 // ActorImage Component as before
 const ActorImage = ({ profilePath, gender, name }) => {
@@ -16,7 +21,7 @@ const ActorImage = ({ profilePath, gender, name }) => {
 
   const handleLoadingComplete = () => {
     if (profilePath) {
-      setImageSrc(`https://image.tmdb.org/t/p/w200${profilePath}`)
+      setImageSrc(getImageUrl("PROFILE","LARGE", profilePath))
     }
   }
 
@@ -38,9 +43,9 @@ const ActorImage = ({ profilePath, gender, name }) => {
 
 // Helper function for determining the default image based on gender
 const getDefaultImage = (gender) => {
-  if (gender === 1) return defaultFemaleImage
-  if (gender === 2) return defaultMaleImage
-  return defaultUnknownImage
+  if (gender === 1) return defaultFemaleImg
+  if (gender === 2) return defaultMaleImg
+  return defaultUnknownImg
 }
 const PopularActors = () => {
   const [actors, setActors] = useState([])
@@ -61,9 +66,9 @@ const PopularActors = () => {
 
   // Function to determine default image based on gender
   const getDefaultImage = (gender) => {
-    if (gender === 1) return defaultFemaleImage
-    if (gender === 2) return defaultMaleImage
-    return defaultUnknownImage
+    if (gender === 1) return defaultFemaleImg
+    if (gender === 2) return defaultMaleImg
+    return defaultUnknownImg
   }
 
   // Handle pagination controls
