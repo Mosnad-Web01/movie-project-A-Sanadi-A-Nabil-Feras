@@ -1,9 +1,10 @@
+"use client";
 import React from 'react';
 import { coverBG } from '@/util/local-ImageConstants'; 
-
-
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+  const { t } = useTranslation('common');
   return (
     <div className="relative w-full h-[800px] overflow-hidden">
       <div
@@ -28,29 +29,29 @@ const HeroSection = () => {
 
         {/* Content */}
         <div className="relative flex flex-col items-center justify-center h-full text-white px-4 text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-6xl font-[600]  md:font-[700] lg:font-[900]  tracking-wide mb-6" style={{wordSpacing: '-0.2em'}}>
-            Unlimited movies, 
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-[600]  md:font-[700] lg:font-[900]  tracking-wide mb-6" >
+            {t('hero.header1')}
           </h1>
-          <h1 className="text-4xl md:text-6xl lg:text-6xl font-[600]  md:font-[700] lg:font-[900]  tracking-wide mb-6" style={{wordSpacing: '-0.2em'}}>
-            TV shows, and more
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-[600]  md:font-[700] lg:font-[900]  tracking-wide mb-6" >
+          {t('hero.header2')}
           </h1>
           
-          <p className="text-xl md:text-2xl mb-4">
-            Starts at USD 3.99. Cancel anytime.
+          <p className="text-xl md:text-2xl mb-2">
+          {t('hero.startingPrice')}
           </p>
           
           <p className="text-lg md:text-xl mb-6">
-            Ready to watch? Enter your email to create or restart your membership.
+          {t('hero.readyToWatch')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-2 w-full max-w-[600px]">
             <input
               type="email"
-              placeholder="Email address"
+              placeholder={t('hero.emailPlaceholder')}
               className="flex-grow py-3 px-4 text-black rounded-md text-lg"
             />
             <button className="bg-[#e50914] text-white py-3 px-6 rounded-md text-lg font-semibold hover:bg-[#f6121d] transition-colors">
-              Get Started &gt;
+            {t('hero.getStarted')}
             </button>
           </div>
         </div>

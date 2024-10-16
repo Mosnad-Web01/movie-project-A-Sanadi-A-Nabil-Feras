@@ -1,26 +1,21 @@
+// components/Navbar.js
 "use client"
 
-// react & next imports 
-  import { useState, useEffect } from "react";
-  import Image from "next/image";
-  import Link from "next/link";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
+import { FaMoon, FaSun } from "react-icons/fa";
+import Sidebar from "./Sidebar";
+import LinkDropdown from "./LinkDropdown";
+import ProfileDropdown from "./ProfileDropdown";
+import SearchBar from "./SearchBar";
+import LanguageChanger from "./LanguageChanger";
+import { logo } from '@/util/local-ImageConstants'; 
+import { fetchGenres } from "@/services/fetchGenres";
+import { useDarkMode } from "@/hooks/useDarkMode";
+import { useTranslation } from 'react-i18next';
 
-// third-party imports
-  import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
-  import { FaMoon, FaSun } from "react-icons/fa";
-
-// component imports 
-  import Sidebar from "./Sidebar";
-  import LinkDropdown from "./LinkDropdown";
-  import ProfileDropdown from "./ProfileDropdown";
-  import SearchBar from "./SearchBar";
-
-// local relative imports   
-  import { logo } from '@/util/local-ImageConstants'; 
-  import { fetchGenres } from "@/services/fetchGenres";
-  import { useDarkMode } from "@/hooks/useDarkMode";
-
-// Centralized navLinks data
 const NAV_LINKS_TEMPLATE = [
   { label: "Genres", dropdownItems: [] },
   {
@@ -35,8 +30,9 @@ const NAV_LINKS_TEMPLATE = [
   },
 ]
 
-
 const Navbar = () => {
+  
+  const { t, i18n } = useTranslation('common');
   const { darkMode, toggleDarkMode } = useDarkMode();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -45,28 +41,26 @@ const Navbar = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 
- // Fetch genres and update the navLinks
- useEffect(() => {
-  const updateNavLinksWithGenres = async () => {
-    const movieGenres = await fetchGenres() // Return an array of genre names
-    setNavLinks((prevLinks) =>
-      prevLinks.map((link) => {
-        if (link.label === "Genres") {
-          return { ...link, dropdownItems: movieGenres }
-        }
-        return link
-      }),
-    )
-  }
+  useEffect(() => {
+    const updateNavLinksWithGenres = async () => {
+      const movieGenres = await fetchGenres(i18n.language); // Pass the current language
+      setNavLinks((prevLinks) =>
+        prevLinks.map((link) => {
+          if (link.label === "Genres") {
+            return { ...link, dropdownItems: movieGenres };
+          }
+          return link;
+        }),
+      );
+    };
 
-  updateNavLinksWithGenres()
-}, [])  
+    updateNavLinksWithGenres();
+  }, [i18n.language]);  // Re-fetch when language changes
 
   return (
     <header className="bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white sticky top-0 z-50 shadow-lg">
       <nav className="container mx-auto h-16 flex items-center justify-between px-4 md:px-6">
-       <div className="flex  items-center gap-12">
-          {/* Hamburger Icon */}
+        <div className="flex items-center gap-12">
           <div className="md:hidden">
             <MenuIcon
               className="w-6 h-6 cursor-pointer"
@@ -74,7 +68,6 @@ const Navbar = () => {
             />
           </div>
 
-          {/* Logo */}
           <Link href="/">
             <div className="cursor-pointer flex items-center space-x-2">
               <span className="text-2xl font-bold text-[#5fcde4] lg:hidden">
@@ -88,37 +81,34 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Links with dropdowns */}
           <div className="hidden md:flex space-x-4 text-sm font-medium">
             {navLinks.map((link, index) => (
               <LinkDropdown
                 key={index}
-                label={link.label}
+                label={t(`navbar.${link.label}`)}
                 dropdownItems={link.dropdownItems}
                 href={link.href}
                 dropdownItemshref={link.dropdownItemshref}
               />
             ))}
-            {/* Actors*/}
             <Link
               href="/actors"
-              className="hover:text-[#01b4e4] flex items-center  text-lg font-semibold "
+              className="hover:text-[#01b4e4] flex items-center text-lg font-semibold"
             >
-              Actors
+              {t('navbar.Actors')}
             </Link>
           </div>
         </div>
 
-        {/* Right Section */}
-        <div className="flex items-center space-x-4 md:space-x-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <SearchIcon
-            className="w-6 h-6 hover:text-[#01b4e4] cursor-pointer  md:block"
+            className="w-6 h-6 hover:text-[#01b4e4] cursor-pointer md:block"
             onClick={toggleSearch}
           />
           <ProfileDropdown />
           <button
             onClick={toggleDarkMode}
-            className="bg-[#01b4e4] rounded-full px-3 py-1 text-white"
+            className="bg-[#01b4e4] rounded-full p-1 text-white"
           >
             {darkMode ? (
               <FaSun className="text-xl" />
@@ -126,17 +116,18 @@ const Navbar = () => {
               <FaMoon className="text-xl" />
             )}
           </button>
+          <div className="hidden sm:block">
+            <LanguageChanger />
+          </div>
         </div>
       </nav>
 
-      {/* Sidebar */}
       <Sidebar
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
         navLinks={navLinks}
       />
 
-      {/* SearchBar */}
       <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );

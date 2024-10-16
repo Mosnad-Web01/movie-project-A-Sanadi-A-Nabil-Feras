@@ -56,7 +56,7 @@ const IMAGE_TYPES = {
  */
 const getImageUrl = (type = 'POSTER', size = 'MEDIUM', path = "") => {
   const imageSize = IMAGE_TYPES[type]?.[size] || IMAGE_TYPES.POSTER.MEDIUM;
-  return path ? `${BASE_IMAGE_URL}${imageSize}${path}` : '/placeholder-avater.png';
+  return path ? `${BASE_IMAGE_URL}${imageSize}${path}` : '/placeholder.png';
 };
 
 // Export TMDB constants and utility function
