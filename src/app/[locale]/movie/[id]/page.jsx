@@ -1,3 +1,4 @@
+
 import CategoryPage from "@/components/CategoryPage";
 import { formatCategoryForAPI } from "@/services/formatCategoryForAPI";
 import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB";

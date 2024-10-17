@@ -10,7 +10,7 @@ const HomeSection = () => {
   const { t } = useTranslation( 'common' );
 
   return (
-    <div className="flex flex-col gap-12 min-h-screen">
+    <div className="flex flex-col gap-12 min-h-screen pb-16">
       <MediaSection
         title={t('homeSection.trending')}
         toggleOptions={[

@@ -1,6 +1,7 @@
 // app/[locale]/layout.jsx
 import localFont from "next/font/local"
 import { Inter } from 'next/font/google';
+import { AuthProvider } from '@/contexts/AuthContext';
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
 import "./globals.css"
@@ -40,8 +41,9 @@ export default async function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={dir(locale)}>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased ${inter.className} bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white`}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased  bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white`}
       >
+        <AuthProvider>
         <TranslationsProvider
           namespaces={i18nNamespaces}
           locale={locale}
@@ -49,12 +51,13 @@ export default async function RootLayout({ children, params: { locale } }) {
         >
           <main>
             <Navbar />
-            <div className="mb-10 min-h-100">
+            <div className=" min-h-100">
               {children}
             </div>
             <Footer />
           </main>
         </TranslationsProvider>
+        </AuthProvider>
       </body>
     </html>
   )

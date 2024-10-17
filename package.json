@@ -17,6 +17,7 @@
     "firebase": "^10.14.1",
     "i18next": "^23.16.0",
     "i18next-resources-to-backend": "^1.2.1",
+    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "14.2.11",
     "next-i18n-router": "^5.5.1",

@@ -2,17 +2,13 @@ import Image from "next/image"
 import { footerImg } from '../util/local-ImageConstants'; 
 const Footer = () => {
   return (
-    <footer className="bg-[#032541] py-16 text-white dark:bg-[#02345c]">
-      <div className="container mx-auto flex flex-col justify-between items-center gap-4 md:flex-row md:items-start">
+    <footer className="bg-gray-900  text-white">
+      <div className=" py-16 container mx-auto flex flex-col justify-between items-center gap-4 md:flex-row md:items-start   border-t-[0.3px] border-gray-400">
         <nav className="flex flex-col gap-10">
           <div className="flex md:justify-end">
-            <Image src={footerImg} alt="footer logo" className="w-40" />
+            <Image src={footerImg} alt="footer logo" className="w-48 h-fill" />
           </div>
-          <div>
-            <button className=" bg-white px-5 py-4 rounded-lg font-bold text-[#01b4e4]">
-              Join the Community
-            </button>
-          </div>
+
         </nav>
         <div className="flex flex-col gap-1">
           <h3 className="font-bold text-xl">THE BASICS</h3>

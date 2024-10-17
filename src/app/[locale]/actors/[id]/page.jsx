@@ -1,7 +1,7 @@
 "use client"
 import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa" // Import social media icons
 import { useEffect, useState } from "react"
-import { fetchDataFromTMDB } from "../../../util/fetchDataFromTMDB"
+import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB"
 import Image from "next/image"
 import Link from "next/link"
 import LoadingSpinner from "@/components/LoadingSpinner"
@@ -54,8 +54,7 @@ const ActorPage = ({ params }) => {
       {/* Actor Image */}
       <div className="flex-shrink-0">
         <Image
-  
-          src={`${getImageUrl('PROFILE', 'W500', actor.profile_path)}`}
+          src={`${getImageUrl("PROFILE", "W500", actor.profile_path)}`}
           alt={actor.name}
           width={300}
           height={450}

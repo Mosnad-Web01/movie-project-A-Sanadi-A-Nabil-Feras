@@ -16,7 +16,7 @@ const MediaCard = ({ imageUrl, title, voteAverage, releaseDate, link, mediaType 
           />
 
           {/* Circular Progress Bar (Only for movies and TV shows) */}
-          {mediaType !== 'person' && voteAverage && (
+          {mediaType !== 'person' && voteAverage>=0  && (
             <div className="absolute bottom-2 left-2 z-30">
               <div
                 className="circle-progress w-14 h-14 text-gray-200"

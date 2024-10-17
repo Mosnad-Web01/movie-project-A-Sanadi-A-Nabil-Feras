@@ -1,20 +1,20 @@
 // components/Navbar.js
 "use client"
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
-import { FaMoon, FaSun } from "react-icons/fa";
-import Sidebar from "./Sidebar";
-import LinkDropdown from "./LinkDropdown";
-import ProfileDropdown from "./ProfileDropdown";
-import SearchBar from "./SearchBar";
-import LanguageChanger from "./LanguageChanger";
-import { logo } from '@/util/local-ImageConstants'; 
-import { fetchGenres } from "@/services/fetchGenres";
-import { useDarkMode } from "@/hooks/useDarkMode";
-import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { MenuIcon, SearchIcon } from "@heroicons/react/solid"
+import { FaMoon, FaSun } from "react-icons/fa"
+import Sidebar from "./Sidebar"
+import LinkDropdown from "./LinkDropdown"
+import ProfileDropdown from "./ProfileDropdown"
+import SearchBar from "./SearchBar"
+import LanguageChanger from "./LanguageChanger"
+import { logo } from "@/util/local-ImageConstants"
+import { fetchGenres } from "@/services/fetchGenres"
+import { useDarkMode } from "@/hooks/useDarkMode"
+import { useTranslation } from "react-i18next"
 
 const NAV_LINKS_TEMPLATE = [
   { label: "Genres", dropdownItems: [] },
@@ -31,31 +31,30 @@ const NAV_LINKS_TEMPLATE = [
 ]
 
 const Navbar = () => {
-  
-  const { t, i18n } = useTranslation('common');
-  const { darkMode, toggleDarkMode } = useDarkMode();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [navLinks, setNavLinks] = useState(NAV_LINKS_TEMPLATE);
+  const { t, i18n } = useTranslation("common")
+  const { darkMode, toggleDarkMode } = useDarkMode()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [navLinks, setNavLinks] = useState(NAV_LINKS_TEMPLATE)
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
+  const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
 
   useEffect(() => {
     const updateNavLinksWithGenres = async () => {
-      const movieGenres = await fetchGenres(i18n.language); // Pass the current language
+      const movieGenres = await fetchGenres(i18n.language) // Pass the current language
       setNavLinks((prevLinks) =>
         prevLinks.map((link) => {
           if (link.label === "Genres") {
-            return { ...link, dropdownItems: movieGenres };
+            return { ...link, dropdownItems: movieGenres }
           }
-          return link;
+          return link
         }),
-      );
-    };
+      )
+    }
 
-    updateNavLinksWithGenres();
-  }, [i18n.language]);  // Re-fetch when language changes
+    updateNavLinksWithGenres()
+  }, [i18n.language]) // Re-fetch when language changes
 
   return (
     <header className="bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white sticky top-0 z-50 shadow-lg">
@@ -95,30 +94,28 @@ const Navbar = () => {
               href="/actors"
               className="hover:text-[#01b4e4] flex items-center text-lg font-semibold"
             >
-              {t('navbar.Actors')}
+              {t("navbar.Actors")}
             </Link>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 md:gap-6">
+        <div className="flex items-center gap-4 md:gap-4 mx-2">
           <SearchIcon
             className="w-6 h-6 hover:text-[#01b4e4] cursor-pointer md:block"
             onClick={toggleSearch}
           />
-          <ProfileDropdown />
-          <button
-            onClick={toggleDarkMode}
-            className="bg-[#01b4e4] rounded-full p-1 text-white"
-          >
-            {darkMode ? (
-              <FaSun className="text-xl" />
-            ) : (
-              <FaMoon className="text-xl" />
-            )}
-          </button>
           <div className="hidden sm:block">
             <LanguageChanger />
           </div>
+          
+          <div
+            onClick={toggleDarkMode}
+            className="rounded-full p-1  border-1 border-solid border-gray-900 dark:border-none"
+          >
+            {darkMode ? <FaSun size={20} /> : <FaMoon size={19} />}
+          </div>
+
+          <ProfileDropdown />
         </div>
       </nav>
 
@@ -130,7 +127,7 @@ const Navbar = () => {
 
       <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -5,7 +5,10 @@
       "startingPrice": "Starts at USD 3.99. Cancel anytime.",
       "readyToWatch": "Ready to watch? Enter your email to create or restart your membership.",
       "emailPlaceholder": "Email address",
-      "getStarted": "Get Started >"
+      "getStarted": "Get Started >",
+      "welcome": "Welcome",
+      "enjoyContent":"Get ready to dive into the ultimate entertainment experience! ",
+      "enjoyContent1":" Movies, series anytime, anywhere!"
     },
     
     "navbar": {

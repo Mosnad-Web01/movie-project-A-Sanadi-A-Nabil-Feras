@@ -34,12 +34,12 @@ const CastMember = React.memo(({ person }) => {
   return (
     <Link href={`/actors/${person.id}`}>
       <div className="flex-shrink-0 w-32 text-center group">
-        <div className="relative overflow-hidden rounded-lg">
+        <div className="relative overflow-hidden rounded-lg min-h-[192px] min-w-[128px]  ">
           <Image
             src={imgSrc} // The current image source (initial or fallback)
             alt={person.name}
-            width={128}
-            height={192}
+            layout="fill"
+            objectFit="cover"
             className="transition duration-300 group-hover:scale-110"
             onError={handleImageError}
           />

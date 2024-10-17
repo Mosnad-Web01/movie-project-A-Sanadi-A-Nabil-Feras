@@ -1,13 +1,34 @@
-import { i18nRouter } from "next-i18n-router"
-import i18nConfig from "./i18nConfig"
-
-//The i18nRouter function will take the request, detect the user’s preferred language using the accept-language header, and then redirect them to the path with their preferred language. If we don’t support their language, it will fallback to the default language.
+// src/middleware.js
+import { i18nRouter } from "next-i18n-router";
+import i18nConfig from "./i18nConfig";
+import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  return i18nRouter(request, i18nConfig)
+  // Language handling
+  const i18nResponse = i18nRouter(request, i18nConfig);
+
+  // Authentication logic
+  const protectedRoutes = ['/movie', '/tv', '/search', '/actors']; // Define protected routes
+  const currentUser = request.cookies.get('currentUser')?.value;
+
+  // Check if the current route is protected
+  if (protectedRoutes.some(route => request.nextUrl.pathname.startsWith(route))) {
+    // If user is not authenticated, redirect to login
+    if (!currentUser) {
+      return NextResponse.redirect(new URL('/sign-in', request.url));
+    }
+  }
+
+  // If user is authenticated, restrict access to sign-in and sign-up
+  if (currentUser && ['/sign-in', '/sign-up'].includes(request.nextUrl.pathname)) {
+    return NextResponse.redirect(new URL('/', request.url)); // Redirect authenticated users to home if trying to access sign-in or sign-up
+  }
+
+  // Return the i18n response if no redirect happened
+  return i18nResponse;
 }
 
-// applies this middleware only to files in the app directory and ignore the below files
+// Applies this middleware only to files in the app directory and ignores the below files
 export const config = {
   matcher: "/((?!api|static|.*\\..*|_next).*)",
-}
+};
