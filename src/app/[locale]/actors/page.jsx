@@ -21,7 +21,7 @@ const ActorImage = ({ profilePath, gender, name }) => {
 
   const handleLoadingComplete = () => {
     if (profilePath) {
-      setImageSrc(getImageUrl("PROFILE","LARGE", profilePath))
+      setImageSrc(getImageUrl("PROFILE","XLARGE", profilePath))
     }
   }
 

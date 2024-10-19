@@ -54,7 +54,7 @@ const ActorPage = ({ params }) => {
       {/* Actor Image */}
       <div className="flex-shrink-0">
         <Image
-          src={`${getImageUrl("PROFILE", "W500", actor.profile_path)}`}
+          src={`${getImageUrl("PROFILE", "XXLARGE", actor.profile_path)}`}
           alt={actor.name}
           width={300}
           height={450}
@@ -152,12 +152,12 @@ const ActorPage = ({ params }) => {
         {/* Known For */}
         <div>
           <h2 className="text-2xl font-semibold mb-4">Known For</h2>
-          <div className="flex overflow-x-auto space-x-4">
+          <div className="flex overflow-x-auto scroll-m-1 space-x-4">
             {actor.movie_credits?.cast.slice(0, 6).map((movie) => (
               <div key={movie.id} className="flex-shrink-0 w-40">
                 <Link href={`/movie/${movie.id}`} passHref>
                   <Image
-                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
                     width={160}
                     height={240}

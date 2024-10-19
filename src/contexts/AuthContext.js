@@ -35,11 +35,14 @@ export function AuthProvider({ children }) {
       email,
       likedActors: [],
       likedMovies: [],
+      LikedTvShows: [],
       watchLater: [],
     })
 
     // fetch the full user profile from Firestore
     const userProfile = await getUserProfile(user.uid)
+
+    await refreshUserData()
 
     // store auth token in cookie
     const token = await user.getIdToken()
@@ -60,6 +63,8 @@ export function AuthProvider({ children }) {
 
     // fetch the full user profile from Firestore
     const userProfile = await getUserProfile(user.uid)
+
+    await refreshUserData()
 
     // store auth token in cookie
     const token = await user.getIdToken()
@@ -102,11 +107,20 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
+  // Refresh user data when the user changes
+  async function refreshUserData() {
+    if (currentUser) {
+      const userProfile = await getUserProfile(currentUser.uid)
+      setCurrentUser({ ...currentUser, ...userProfile })
+    }
+  }
+
   const value = {
     currentUser,
     signup,
     login,
     logout,
+    refreshUserData, // Add this new function to the context value
   }
 
   return (
