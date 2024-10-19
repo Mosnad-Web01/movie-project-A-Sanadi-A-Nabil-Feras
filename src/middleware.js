@@ -8,7 +8,7 @@ export function middleware(request) {
   const i18nResponse = i18nRouter(request, i18nConfig);
 
   // Authentication logic
-  const protectedRoutes = ['/movie', '/tv', '/search', '/actors']; // Define protected routes
+  const protectedRoutes = ['/movie', '/tv', '/search', '/actors', '/profile']; // Define protected routes
   const currentUser = request.cookies.get('currentUser')?.value;
 
   // Check if the current route is protected

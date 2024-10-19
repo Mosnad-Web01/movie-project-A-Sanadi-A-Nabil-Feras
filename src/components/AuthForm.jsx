@@ -1,5 +1,6 @@
 // src/components/AuthForm.jsx
 "use client";
+import { showErrorToast, showSuccessToast } from '@/util/toast';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -13,9 +14,10 @@ export default function AuthForm({ formTitle, buttonText, onSubmit, includeNameF
     e.preventDefault();
     try {
       await onSubmit({ name, email, password });
+      showSuccessToast('Logged in successfully');
     } catch (err) {
       setError('Failed to submit the form');
-      console.error(err);
+      showErrorToast('Failed to submit the form', err);
     }
   }
 
@@ -96,7 +98,7 @@ export default function AuthForm({ formTitle, buttonText, onSubmit, includeNameF
               </p>
             ):(
               <p className='text-center'>
-                Don't have an account ? {' '}
+                Dont have an account ? {' '}
                 <Link
                   href="/sign-up"
                   className="text-blue-600 hover:text-blue-800 font-semibold underline"

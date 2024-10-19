@@ -3,8 +3,7 @@ import { FaHeart, FaBookmark, FaStar, FaBars } from "react-icons/fa";
 import IconButton from "./IconButton";
 import { useLikes } from "../hooks/useLikes";
 import { useAuth } from "../contexts/AuthContext";
-
-import { showErrorToast } from '@/services/toast';
+import { showErrorToast , showSuccessToast } from '../util/toast';
 
 const InteractiveButtons = ({ mediaId, mediaType }) => {
   const { currentUser } = useAuth();
@@ -17,6 +16,7 @@ const InteractiveButtons = ({ mediaId, mediaType }) => {
   const handleLikeClick = () => {
     if (currentUser) {
       toggleLike();
+    
     } else {
       showErrorToast('Please log in to like media.');
     }

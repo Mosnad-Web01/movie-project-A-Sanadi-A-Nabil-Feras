@@ -45,8 +45,8 @@ const ProfileDropdown = () => {
           <div className="absolute right-2 -top-1 w-3 h-3 border-l border-b border-white transform rotate-45 bg-white"></div>
           <div className="flex flex-col">
             {/* Display user's name */}
-            <span className="font-bold text-lg">{currentUser?.name || "User"}</span>
-            <span className="text-sm text-gray-500">View profile</span>
+            <span className="font-bold text-sm ">{currentUser?.name || "User"}</span>
+            <Link href={`/profile/${currentUser?.uid}`} ><span className="text-sm text-gray-500 cursor-pointer">View profile</span> </Link>
             <div className="border-b border-gray-300 my-2"></div>
             <ul className="space-y-1">
               {/* Menu items */}

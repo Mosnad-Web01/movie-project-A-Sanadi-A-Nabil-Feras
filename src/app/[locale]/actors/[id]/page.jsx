@@ -7,6 +7,7 @@ import Link from "next/link"
 import LoadingSpinner from "@/components/LoadingSpinner"
 
 import { getImageUrl } from "@/util/tmdbImageConstants"
+import InteractiveButtons from "@/components/InteractiveButtons"
 
 const ActorPage = ({ params }) => {
   const { id } = params
@@ -96,6 +97,9 @@ const ActorPage = ({ params }) => {
             <strong>Known Credits:</strong> {actor.movie_credits.cast.length}
           </p>
         </div>
+
+        <InteractiveButtons mediaId={actor.id} mediaType="person"/>
+
 
         {/* Social Media Links */}
         {actor.external_ids && (
