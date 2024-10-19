@@ -1,11 +1,11 @@
 "use client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB";
-import { doc, getDoc } from "firebase/firestore"; // Assuming you're using Firestore
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
+import MediaGroup from "@/components/MediaGroup";
 
 const Profile = ({ params }) => {
   const { id } = params;
@@ -17,12 +17,10 @@ const Profile = ({ params }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user data from Firebase and TMDB
   useEffect(() => {
     if (currentUser) {
       const fetchLikedMedia = async () => {
         try {
-          // Get user document from Firestore
           const userDocRef = doc(db, "users", currentUser.uid);
           const userDoc = await getDoc(userDocRef);
 
@@ -30,13 +28,13 @@ const Profile = ({ params }) => {
             const userData = userDoc.data();
             console.log("User Data:", userData);
 
-            // Fetch media based on user's liked data
             const likedMovies = await fetchMedia(userData.likedMovies || [], "movie");
             const likedTvShows = await fetchMedia(userData.likedTvShows || [], "tv");
             const likedActors = await fetchMedia(userData.likedActors || [], "person");
-            const watchLaterList = await fetchMedia(userData.watchLater || [], "movie");
 
-            // Update state with fetched data
+            // Fetch Watch Later Media
+            const watchLaterList = await fetchWatchLaterMedia(userData.watchLater || []);
+
             setMovies(likedMovies);
             setTvShows(likedTvShows);
             setActors(likedActors);
@@ -47,7 +45,7 @@ const Profile = ({ params }) => {
         } catch (error) {
           console.error("Error fetching user data or media:", error);
         } finally {
-          setLoading(false); // Set loading to false once data is fetched
+          setLoading(false);
         }
       };
 
@@ -55,10 +53,10 @@ const Profile = ({ params }) => {
     }
   }, [currentUser]);
 
-  // Fetch media by type (movies, tv shows, actors)
   const fetchMedia = async (ids, type) => {
     if (ids.length === 0) {
-      return []; // Return an empty array if there are no IDs to fetch
+      console.warn(`No IDs to fetch for type: ${type}`);
+      return [];
     }
 
     try {
@@ -67,7 +65,6 @@ const Profile = ({ params }) => {
         ids.map(async (id) => {
           let media;
           if (type === "person") {
-            // Special case for fetching actor data with movie credits and external IDs
             media = await fetchDataFromTMDB(`/person/${id}?append_to_response=movie_credits,external_ids`);
           } else {
             media = await fetchDataFromTMDB(`/${type}/${id}`);
@@ -75,9 +72,31 @@ const Profile = ({ params }) => {
           return media;
         })
       );
-      return fetchedMedia.filter((item) => item); // Filter out any null/undefined values
+      return fetchedMedia.filter((item) => item);
     } catch (error) {
       console.error(`Error fetching ${type} data:`, error);
+      return [];
+    }
+  };
+
+  const fetchWatchLaterMedia = async (watchLaterList) => {
+    if (watchLaterList.length === 0) {
+      console.warn("No Watch Later items to fetch");
+      return [];
+    }
+
+    try {
+      console.log("Fetching Watch Later data for items:", watchLaterList);
+      const fetchedMedia = await Promise.all(
+        watchLaterList.map(async (item) => {
+          const type = item.type === "movie" ? "movie" : "tv";
+          const media = await fetchDataFromTMDB(`/${type}/${item.id}`);
+          return { ...media, type };
+        })
+      );
+      return fetchedMedia.filter((item) => item);
+    } catch (error) {
+      console.error("Error fetching Watch Later data:", error);
       return [];
     }
   };
@@ -88,7 +107,6 @@ const Profile = ({ params }) => {
       try {
         await deleteAccount();
         // Route to the login page or homepage after account deletion
-        // For example, you might use useRouter() here to redirect
       } catch (error) {
         console.error("Error deleting account:", error);
         setIsDeleting(false);
@@ -128,51 +146,8 @@ const Profile = ({ params }) => {
         <MediaGroup title="Liked Movies" media={movies} mediaType="movie" />
         <MediaGroup title="Liked TV Shows" media={tvShows} mediaType="tv" />
         <MediaGroup title="Liked Actors" media={actors} mediaType="person" />
-        <MediaGroup title="Watch Later" media={watchLater} mediaType="movie" />
+        <MediaGroup title="Watch Later" media={watchLater} mediaType="watchLater" />
       </div>
-    </div>
-  );
-};
-
-const MediaGroup = ({ title, media, mediaType }) => {
-  return (
-    <div>
-      <h2 className="text-xl font-semibold mb-3">{title}</h2>
-      {media.length === 0 ? (
-        <p className="text-gray-500">No {mediaType}s to display.</p>
-      ) : (
-        <ul className="grid grid-cols-1 gap-4">
-          {media.map((item) => (
-            <li key={item.id} className="bg-gray-100 rounded-lg p-4 shadow-md transition duration-200 hover:shadow-lg">
-              <div className="flex items-center">
-                {mediaType === "person" ? (
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
-                    alt={item.name}
-                    width={64}
-                    height={96}
-                    className="w-16 h-24 object-cover rounded mr-4"
-                  />
-                ) : (
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    alt={item.title || item.name}
-                    width={64}
-                    height={96}
-                    className="w-16 h-24 object-cover rounded mr-4"
-                  />
-                )}
-                <div>
-                  <h3 className="font-semibold">{item.title || item.name}</h3>
-                  <p className="text-gray-500">
-                    {mediaType === "person" ? "Actor" : item.release_date || item.first_air_date}
-                  </p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };

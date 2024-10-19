@@ -35,9 +35,9 @@ export function AuthProvider({ children }) {
       email,
       likedActors: [],
       likedMovies: [],
-      LikedTvShows: [],
-      watchLater: [],
-    })
+      likedTvShows: [],
+      watchLater: [],  
+    });
 
     // fetch the full user profile from Firestore
     const userProfile = await getUserProfile(user.uid)
