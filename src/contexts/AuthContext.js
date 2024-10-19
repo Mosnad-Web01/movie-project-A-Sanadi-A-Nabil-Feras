@@ -120,7 +120,7 @@ export function AuthProvider({ children }) {
     signup,
     login,
     logout,
-    refreshUserData, // Add this new function to the context value
+    refreshUserData, 
   }
 
   return (

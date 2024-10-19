@@ -4,6 +4,8 @@ import IconButton from "./IconButton";
 import { useLikes } from "../hooks/useLikes";
 import { useAuth } from "../contexts/AuthContext";
 
+import { showErrorToast } from '@/services/toast';
+
 const InteractiveButtons = ({ mediaId, mediaType }) => {
   const { currentUser } = useAuth();
   const { isLiked, toggleLike, isUpdating } = useLikes(mediaId, mediaType);
@@ -16,8 +18,7 @@ const InteractiveButtons = ({ mediaId, mediaType }) => {
     if (currentUser) {
       toggleLike();
     } else {
-      // Handle case when user is not logged in (e.g., show login prompt)
-      console.log("User needs to log in to like media");
+      showErrorToast('Please log in to like media.');
     }
   };
 

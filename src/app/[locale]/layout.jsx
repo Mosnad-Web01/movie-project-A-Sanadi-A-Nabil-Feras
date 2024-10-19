@@ -5,6 +5,9 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
 import "./globals.css"
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import "slick-carousel/slick/slick.css"
@@ -51,10 +54,13 @@ export default async function RootLayout({ children, params: { locale } }) {
         >
           <main>
             <Navbar />
-            <div className=" min-h-100">
+            <div className="relative min-h-100">
               {children}
+              <ToastContainer />
             </div>
+            
             <Footer />
+          
           </main>
         </TranslationsProvider>
         </AuthProvider>
