@@ -2,7 +2,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import Link from "next/link"
 import { MenuIcon, SearchIcon } from "@heroicons/react/solid"
 import { FaMoon, FaSun } from "react-icons/fa"

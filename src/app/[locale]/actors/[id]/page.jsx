@@ -2,7 +2,7 @@
 import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa" // Import social media icons
 import { useEffect, useState } from "react"
 import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import Link from "next/link"
 import LoadingSpinner from "@/components/LoadingSpinner"
 

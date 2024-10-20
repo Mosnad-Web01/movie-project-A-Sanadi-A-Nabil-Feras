@@ -95,7 +95,7 @@ const LinkDropdown = ({ label, dropdownItems, href, dropdownItemshref }) => {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default LinkDropdown

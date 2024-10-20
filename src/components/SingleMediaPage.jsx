@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import LoadingSpinner from "./LoadingSpinner";
 import Banner from "./Banner";
 import TabMenu from "./TabMenu";

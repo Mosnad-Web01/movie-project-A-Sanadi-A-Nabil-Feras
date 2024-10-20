@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import Link from "next/link"
 import { getImageUrl } from "@/util/tmdbImageConstants"
 import { placeholderImg } from "@/util/local-ImageConstants"
