@@ -44,7 +44,7 @@ export default async function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale} dir={dir(locale)}>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} antialiased  bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white`}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased  bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white  transition-colors duration-300 `}
       >
         <AuthProvider>
         <TranslationsProvider

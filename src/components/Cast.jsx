@@ -10,7 +10,7 @@ const Cast = ({ cast }) => {
   const CastList = cast?.slice(0, 10) || []
 
   return (
-    <div className="overflow-x-auto pb-4 scrollbar-thin dark:scrollbar-thumb-purple-900 scrollbar-track-gray-900 scrollbar-corner-gray-300 scrollbar-h-px">
+    <div className="overflow-x-auto pb-4 scrollbar-thin dark:scrollbar-thumb-purple-900 scrollbar-track-gray-900 scrollbar-corner-gray-300 scrollbar-h-px transition-colors duration-300">
       <div className="flex space-x-4">
         {/* Map over the CastList members and render a CastMember for each */}
         {CastList.map((person) => (

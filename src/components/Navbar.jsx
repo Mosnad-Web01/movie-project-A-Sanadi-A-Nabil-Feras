@@ -57,7 +57,7 @@ const Navbar = () => {
   }, [i18n.language]) // Re-fetch when language changes
 
   return (
-    <header className="bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white sticky top-0 z-50 shadow-lg">
+    <header className="bg-gray-200 dark:bg-gray-900 text-[#032541] dark:text-white sticky top-0 z-50 shadow-lg  transition-colors duration-300">
       <nav className="container mx-auto h-16 flex items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-12">
           <div className="md:hidden">

@@ -32,7 +32,7 @@ const Banner = ({
         className="opacity-100 dark:opacity-50"
         onError={() => setImgSrc(banner_placeholder)}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-200 dark:from-gray-900 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-200 dark:from-gray-900 to-transparent transition-colors duration-300"></div>
       <div className="absolute bottom-0 left-0 p-8">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">{title}</h1>
         {tagline && <p className="text-xl mb-2">{tagline}</p>}
@@ -44,7 +44,7 @@ const Banner = ({
           <span>•</span>
           <StarRating
             rating={vote_average}
-            attr="text-gray-800 dark:text-yellow-400"
+            attr="text-gray-800 dark:text-yellow-400 transition-colors duration-300"
             size="h-5 w-5"
           />
         </div>

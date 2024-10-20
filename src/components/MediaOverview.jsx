@@ -21,18 +21,18 @@ const MediaOverview = ({
       <div className="flex justify-start">
         <StarRating
           rating={media.vote_average}
-          attr="text-gray-800 dark:text-yellow-400"
+          attr="text-gray-800 dark:text-yellow-400 transition-colors duration-300"
           size="h-5 w-5"
         />
       </div>
 
       {/* Media Overview */}
-      <p className={`text-gray-700 dark:text-gray-300 ${showFullOverview ? '' : 'line-clamp-4'}`}>
+      <p className={`text-gray-700 dark:text-gray-300 transition-colors duration-300 ${showFullOverview ? '' : 'line-clamp-4'}`}>
         {media.overview}
       </p>
       {media.overview.length > 280 && (
         <button
-          className="text-blue-600 dark:text-blue-400 hover:underline mt-2"
+          className="text-blue-600 dark:text-blue-400 hover:underline mt-2 transition-colors duration-300"
           onClick={() => setShowFullOverview(!showFullOverview)}
         >
           {showFullOverview ? 'Show less' : 'Read more'}
@@ -78,7 +78,7 @@ const MediaOverview = ({
         </div>
 
         {/* Additional Details */}
-        <div className="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg shadow-lg transition duration-500 hover:scale-105 cursor-pointer">
+        <div className="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg shadow-lg transition duration-500 hover:scale-105 cursor-pointer ">
           <p className="font-semibold">Rating:</p>
           <p>{media.vote_average.toFixed(1)} / 10</p>
         </div>

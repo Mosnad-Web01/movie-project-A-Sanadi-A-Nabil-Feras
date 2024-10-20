@@ -64,7 +64,7 @@ const SingleMediaPage = ({ media, mediaType }) => {
   const seasonsCount = mediaType === "tv" ? media.number_of_seasons : null
 
   return (
-    <div className="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
+    <div className="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
       {/* {landing -------------------------------} */}
       <Banner
         path={media.backdrop_path}
@@ -177,14 +177,14 @@ const SingleMediaPage = ({ media, mediaType }) => {
               You May Like
             </span>
           </h2>
-          <div className="overflow-x-auto pb-4 scrollbar-thin dark:scrollbar-thumb-purple-900 scrollbar-track-gray-900 scrollbar-corner-gray-300 scrollbar-h-px">
+          <div className="overflow-x-auto pb-4 scrollbar-thin dark:scrollbar-thumb-purple-900 scrollbar-track-gray-900 scrollbar-corner-gray-300 scrollbar-h-px transition-colors duration-300">
             <div className="flex space-x-6">
               {recommendations?.results.slice(0, 10).map((item) => (
                 <FlipCard
                   key={item.id}
                   item={item}
                   mediaType={mediaType}
-                  size={IMAGE_TYPES.POSTER.LARGE} //w300
+                  size={IMAGE_TYPES.POSTER.ORIGINAL} //w300
                   backStyle="default"
                 />
               ))}
