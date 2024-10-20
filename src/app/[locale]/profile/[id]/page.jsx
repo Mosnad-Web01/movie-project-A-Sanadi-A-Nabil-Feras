@@ -115,38 +115,57 @@ const Profile = ({ params }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
   }
 
   if (!currentUser) {
-    return <div>No user data found. Please log in.</div>;
+    return (
+      <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+        <div className="text-center bg-white p-8 rounded-lg shadow-2xl">
+          <h2 className="text-3xl font-bold mb-4 text-gray-800">No user data found</h2>
+          <p className="mb-6 text-gray-600">Please log in to view your profile.</p>
+          <Link href="/login" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md hover:shadow-lg">
+            Log In
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Welcome, {currentUser.name}</h1>
-        <div className="space-x-4">
-          <Link href={`/profile/${id}/edit`}>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-              Update Profile
-            </button>
-          </Link>
-          <button
-            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300"
-            onClick={handleDeleteAccount}
-            disabled={isDeleting}
-          >
-            {isDeleting ? "Deleting..." : "Remove Account"}
-          </button>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <div className="container mx-auto px-4 py-12">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h1 className="text-4xl font-bold text-gray-800 dark:text-white">Welcome, {currentUser.name}</h1>
+              <p className="text-gray-600 dark:text-gray-300 mt-2">Manage your movie preferences and account settings</p>
+            </div>
+            <div className="space-y-4 md:space-y-0 md:space-x-4">
+              <Link href={`/profile/${id}/edit`} className="inline-block bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md hover:shadow-lg">
+                Update Profile
+              </Link>
+              <button
+                className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md hover:shadow-lg"
+                onClick={handleDeleteAccount}
+                disabled={isDeleting}
+              >
+                {isDeleting ? "Deleting..." : "Remove Account"}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <MediaGroup title="Liked Movies" media={movies} mediaType="movie" />
-        <MediaGroup title="Liked TV Shows" media={tvShows} mediaType="tv" />
-        <MediaGroup title="Liked Actors" media={actors} mediaType="person" />
-        <MediaGroup title="Watch Later" media={watchLater} mediaType="watchLater" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <MediaGroup title="Liked Movies" media={movies} mediaType="movie" />
+          <MediaGroup title="Liked TV Shows" media={tvShows} mediaType="tv" />
+          <MediaGroup title="Liked Actors" media={actors} mediaType="person" />
+          <MediaGroup title="Watch Later" media={watchLater} mediaType="watchLater" />
+        </div>
       </div>
     </div>
   );
