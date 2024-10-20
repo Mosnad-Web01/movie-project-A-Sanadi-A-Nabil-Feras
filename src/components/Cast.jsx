@@ -39,8 +39,8 @@ const CastMember = React.memo(({ person }) => {
             src={imgSrc} // The current image source (initial or fallback)
             alt={person.name}
             layout="fill"
-            objectFit="cover"
-            className="transition duration-300 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className=" object-cover transition duration-300 group-hover:scale-110 "
             onError={handleImageError}
           />
 

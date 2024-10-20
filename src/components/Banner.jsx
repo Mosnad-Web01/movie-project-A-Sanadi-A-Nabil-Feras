@@ -28,9 +28,11 @@ const Banner = ({
         src={imgSrc}
         alt={title}
         layout="fill"
-        objectFit="cover"
-        className="opacity-100 dark:opacity-50"
+        sizes="(max-width: 768px) 100vw, 50vw"
         onError={() => setImgSrc(banner_placeholder)}
+        priority
+        className="opacity-100 dark:opacity-50 object-cover"
+
       />
       <div className="absolute inset-0 bg-gradient-to-t from-gray-200 dark:from-gray-900 to-transparent transition-colors duration-300"></div>
       <div className="absolute bottom-0 left-0 p-8">

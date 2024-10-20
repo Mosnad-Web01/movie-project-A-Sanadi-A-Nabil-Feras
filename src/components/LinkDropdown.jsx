@@ -74,6 +74,7 @@ const LinkDropdown = ({ label, dropdownItems, href, dropdownItemshref }) => {
                 >
                   <Link
                     href={`/${href}/${item.toLowerCase().replace(/ /g, "-")}`}
+                    prefetch={true}
                   >
                     {item}
                   </Link>
