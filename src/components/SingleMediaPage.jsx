@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import LoadingSpinner from "./LoadingSpinner";
 import Banner from "./Banner";
 import TabMenu from "./TabMenu";
@@ -91,7 +91,10 @@ const SingleMediaPage = ({ media, mediaType }) => {
                   height={750}
                   className="rounded-lg shadow-lg w-full"
                   onError={() => setImgSrc(placeholderImg)}
-                />
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto"
+                  }} />
               </Suspense>
             </div>
           </div>
@@ -187,7 +190,6 @@ const SingleMediaPage = ({ media, mediaType }) => {
       </div>
     </div>
     </div>
-
   );
 };
 

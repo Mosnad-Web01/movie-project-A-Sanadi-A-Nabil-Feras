@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from "next/link"
 import { getImageUrl } from "@/util/tmdbImageConstants"
 import { placeholderImg } from "@/util/local-ImageConstants"
@@ -36,13 +36,13 @@ const CastMember = React.memo(({ person }) => {
       <div className="flex-shrink-0 w-32 text-center group">
         <div className="relative overflow-hidden rounded-lg min-h-[192px] min-w-[128px]  ">
           <Image
-            src={imgSrc} // The current image source (initial or fallback)
+            // The current image source (initial or fallback)
+            src={imgSrc}
             alt={person.name}
-            layout="fill"
-            sizes="(max-width: 768px) 100vw, 50vw"
             className=" object-cover transition duration-300 group-hover:scale-110 "
             onError={handleImageError}
-          />
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw" />
 
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition duration-300 flex items-center justify-center">
             <p className="text-white opacity-0 group-hover:opacity-100 transition duration-300 text-sm">
@@ -54,7 +54,7 @@ const CastMember = React.memo(({ person }) => {
         <p className="mt-2 font-semibold text-sm">{person.name}</p>
       </div>
     </Link>
-  )
+  );
 })
 
 // Add a display name for the memoized component to assist with debugging

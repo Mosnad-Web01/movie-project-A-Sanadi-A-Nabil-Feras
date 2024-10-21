@@ -1,4 +1,4 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 import HeroSection from "@/components/HeroSection"
 import HomeSection from "@/components/HomeSection"
 

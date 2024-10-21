@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const MediaGroup = ({ title, media, mediaType }) => {
   const getLinkPath = (item) => {
@@ -37,7 +37,10 @@ const MediaGroup = ({ title, media, mediaType }) => {
                       width={64}
                       height={96}
                       className="w-16 h-24 object-cover rounded-md mr-4 shadow-sm"
-                    />
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                     <div>
                       <h3 className="font-semibold text-lg text-gray-800 dark:text-white">{item.name || item.title}</h3>
                       <p className="text-gray-600 dark:text-gray-300">

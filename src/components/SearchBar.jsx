@@ -1,6 +1,6 @@
 // React & Next imports
 import { useState, useEffect, useCallback, useRef } from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from 'next/link';
 
 // Third-party library imports
@@ -116,7 +116,10 @@ const SearchBar = ({ isOpen, onClose }) => {
                             width={45}
                             height={68}
                             className="mr-3 rounded"
-                          />
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto"
+                            }} />
                         ) : (
                           <div className="w-[45px] h-[68px] bg-gray-300 mr-3 rounded flex items-center justify-center">
                             <SearchIcon className="w-6 h-6 text-gray-500" />

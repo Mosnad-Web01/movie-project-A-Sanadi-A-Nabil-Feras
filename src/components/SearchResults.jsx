@@ -23,7 +23,7 @@ const SearchResults = ({ query }) => {
     if (q) {
       fetchSearchResults()
     }
-  }, [q, currentPage]) // fetch results whenever query or currentPage changes
+  }, [q, currentPage  ]) // fetch results whenever query or currentPage changes
 
   const fetchSearchResults = async () => {
     setIsLoading(true)
@@ -58,9 +58,9 @@ const SearchResults = ({ query }) => {
               {results.map((item) => {
                 const mediaType =
                   item.media_type === "person" ? "actors" : item.media_type
+                  
                 const imageUrl = getImageUrl(
-                  "POSTER",
-                  "w500",
+                "POSTER", "w500",
                   item.poster_path || item.profile_path,
                 )
                 const title = item.title || item.name

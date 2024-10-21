@@ -1,4 +1,4 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 import { footerImg } from '../util/local-ImageConstants'; 
 const Footer = () => {
   return (
@@ -6,7 +6,14 @@ const Footer = () => {
       <div className=" py-16 container mx-auto flex flex-col justify-between items-center gap-4 md:flex-row md:items-start   border-t-[0.3px] border-gray-400">
         <nav className="flex flex-col gap-10">
           <div className="flex md:justify-end">
-            <Image src={footerImg} alt="footer logo" className="w-48 h-fill" />
+            <Image
+              src={footerImg}
+              alt="footer logo"
+              className="w-48 h-fill"
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
 
         </nav>
@@ -46,7 +53,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default Footer

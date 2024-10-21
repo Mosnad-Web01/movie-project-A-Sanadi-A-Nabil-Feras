@@ -2,7 +2,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from "next/link"
 import { MenuIcon, SearchIcon } from "@heroicons/react/solid"
 import { FaMoon, FaSun } from "react-icons/fa"
@@ -76,7 +76,10 @@ const Navbar = () => {
                 className="w-36 h-5 hidden lg:block"
                 src={logo}
                 alt="Logo"
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             </div>
           </Link>
 
@@ -127,7 +130,7 @@ const Navbar = () => {
 
       <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
-  )
+  );
 }
 
 export default Navbar

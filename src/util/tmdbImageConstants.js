@@ -1,4 +1,4 @@
-// util/tmdbImageConstants.js
+// src/util/tmdbImageConstants.js
 
 /**
  * Base URL for TMDB images
@@ -55,8 +55,8 @@ const IMAGE_TYPES = {
  * @returns {string} - The full URL to the image or a placeholder if the path is empty
  */
 const getImageUrl = (type = 'POSTER', size = 'MEDIUM', path = "") => {
-  const imageSize = IMAGE_TYPES[type]?.[size] || IMAGE_TYPES.POSTER.MEDIUM;
-  return path ? `${BASE_IMAGE_URL}${imageSize}${path}` : '/placeholder.png';
+  const imageSize = IMAGE_TYPES[type]?.[size] || IMAGE_TYPES.POSTER.ORIGINAL;
+  return path ? `${BASE_IMAGE_URL}${imageSize}${path}` : '/placeholder-img.jpg';
 };
 
 // Export TMDB constants and utility function

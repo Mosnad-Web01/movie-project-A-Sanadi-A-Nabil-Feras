@@ -2,7 +2,7 @@
 import { FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa" // Import social media icons
 import { useEffect, useState } from "react"
 import { fetchDataFromTMDB } from "@/util/fetchDataFromTMDB"
-import Image from "next/legacy/image"
+import Image from "next/image"
 import Link from "next/link"
 import LoadingSpinner from "@/components/LoadingSpinner"
 
@@ -60,7 +60,10 @@ const ActorPage = ({ params }) => {
           width={300}
           height={450}
           className="rounded-lg shadow-lg"
-        />
+          style={{
+            maxWidth: "100%",
+            height: "auto"
+          }} />
       </div>
 
       {/* Actor Info */}
@@ -166,7 +169,10 @@ const ActorPage = ({ params }) => {
                     width={160}
                     height={240}
                     className="rounded-lg shadow-md"
-                  />
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }} />
                   <p className="text-center mt-2 text-sm font-medium">
                     {movie.title} ({new Date(movie.release_date).getFullYear()})
                   </p>
@@ -177,7 +183,7 @@ const ActorPage = ({ params }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ActorPage
